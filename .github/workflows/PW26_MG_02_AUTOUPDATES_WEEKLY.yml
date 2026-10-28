@@ -1,26 +1,16 @@
-name: PW26_MG_02_AUTOUPDATES_WEEKLY
+# Disabled: this former weekly report sent direct SMTP emails to mentors.
+# Retained as an inert workflow so its purpose remains documented.
+name: PW26_MG_02_AUTOUPDATES_WEEKLY_DISABLED
 
 on:
-  schedule:
-    - cron: '15 14 * * 0'  # Every Sunday at 7:45 PM IST (14:15 UTC)
-  workflow_dispatch:        # Allows manual triggering from the Actions tab
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  weekly-report:
+  weekly-report-disabled:
+    if: ${{ false }}
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository with full history
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
-        with:
-          fetch-depth: 0
-
-      - name: Generate report and send email
-        env:
-          EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
-          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-          REPO_NAME: ${{ github.repository }}
-        run: python3 .github/scripts/weekly_report.py
+      - run: echo "Mentor contribution-report emails are disabled."
