@@ -1,6 +1,6 @@
 name: Proof HTML
+# Manual-only: routine pushes should not generate workflow-run notifications.
 on:
-  push:
   workflow_dispatch:
 permissions:
   contents: read
